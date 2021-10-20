@@ -1,0 +1,84 @@
+#!/bin/bash
+# snap v1.0 2020.11.25 
+# by abrakazabra
+
+boot=/boot
+sboot=/boot/loader/entries	# systemd-boot entires
+snsh=/.snapshots
+home=/mnt/sda/.snap	# a snap konfigurációs fájljai itt vannak
+bfcount=${home}/snap_count # snapshot számláló
+
+echo "Biztonsági mentés a kernelről"
+rsync ${boot}/initramfs-linux-lts.img ${boot}/initramfs-linux-lts-snap.img
+rsync ${boot}/intel-ucode.img ${boot}/intel-ucode-snap.img
+rsync ${boot}/vmlinuz-linux-lts ${boot}/vmlinuz-linux-lts-snap
+sleep 1
+
+echo "Btrfs snapshots a @root, @home, @pkg subvolme-okról"
+
+if [ -e ${bfcount} ]
+then
+	echo "Ok a btrfs számláló fájl létezik"
+	sleep 1
+else
+	echo "Nem létezik a számláló ezért létrehozom a fájlt"
+	echo 1 > ${home}/first
+	mkdir -p ${home}
+	echo 2 > ${bfcount}
+	sleep 1
+fi
+
+num=`cat ${bfcount}`
+elso=`cat ${home}/first`
+
+
+if [ ${elso} -lt 3 ]
+then
+	cp ${home}/arch-snap${num}.conf ${sboot}/
+	btrfs subvolume snapshot / ${snsh}/@root-0${num}
+	echo "A régi fstab bemásolása"
+	cp -a ${home}/fstab${num} ${snsh}/@root-0${num}/etc/fstab
+	btrfs subvolume snapshot /home ${snsh}/@home-0${num}
+	btrfs subvolume snapshot /var/cache/pacman/pkg ${snsh}/@pkg-0${num}
+	num=$((num+1))
+	echo $((elso+1)) > ${home}/first
+	sleep 1
+else
+	if [ $num -lt 4 ]
+	then
+		cp ${home}/arch-snap${num}.conf ${sboot}/
+		btrfs property set ${snsh}/@root-0${num} ro false
+		rm -rf ${snsh}/@root-0${num}
+		btrfs subvolume snapshot / ${snsh}/@root-0${num}
+		echo "A régi fstab bemásolása"
+		cp -a ${home}/fstab${num} ${snsh}/@root-0${num}/etc/fstab
+		btrfs property set ${snsh}/@home-0${num} ro false
+		rm -rf ${snsh}/@home-0${num}
+		btrfs subvolume snapshot /home ${snsh}/@home-0${num}
+		btrfs property set ${snsh}/@pkg-0${num} ro false
+		rm -rf ${snsh}/@pkg-0${num}
+		btrfs subvolume snapshot /var/cache/pacman/pkg ${snsh}/@pkg-0${num}
+		num=$((num+1))
+	else
+		num=2
+		cp ${home}/arch-snap${num}.conf ${sboot}/
+		btrfs property set ${snsh}/@root-0${num} ro false
+		rm -rf ${snsh}/@root-0${num}
+		btrfs subvolume snapshot / ${snsh}/@root-0${num}
+		echo "A régi fstab bemásolása"
+		cp -a ${home}/fstab${num} ${snsh}/@root-0${num}/etc/fstab
+		btrfs property set ${snsh}/@home-0${num} ro false
+		rm -rf ${snsh}/@home-0${num}
+		btrfs subvolume snapshot /home ${snsh}/@home-0${num}
+		btrfs property set ${snsh}/@pkg-0${num} ro false
+		rm -rf ${snsh}/@pkg-0${num}
+		btrfs subvolume snapshot /var/cache/pacman/pkg ${snsh}/@pkg-0${num}
+	fi
+
+fi
+
+
+echo "Btrfs snapshot számláló felülírása"
+echo $num > ${bfcount}
+
+echo "Végeztünk!"

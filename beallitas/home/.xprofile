@@ -1,0 +1,6 @@
+#!/bin/sh
+#xrdb ~/.Xresources
+xrdb -merge ~/.Xresources
+export QT_QPA_PLATFORMTHEME="qt5ct"
+#/usr/bin/start-pulseaudio-x11
+udiskie -2 &

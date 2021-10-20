@@ -1,0 +1,5 @@
+#!/bin/bash
+
+notify-send --urgency=normal -t 5000 "$(mocp -Q %song) - $(mocp -Q %artist) ($(mocp -Q %album))"
+    exit 1
+done
