@@ -151,3 +151,6 @@ vivaldi
 vivaldi-ffmpeg-codecs
 linux-zen
 linux-zen-headers
+pipewire-pulse
+pipewire-jack
+pipewire-alsapipe
