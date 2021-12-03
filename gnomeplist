@@ -105,6 +105,10 @@ lm_sensors
 linux-headers
 linux-lts-headers
 vivaldi
+vivaldi-ffmpeg-codecs
+bitwarden
+telegram-desktop
+syncthing
 pipewire-pulse
 pipewire-jack
 pipewire-alsapipe
