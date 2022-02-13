@@ -11,7 +11,7 @@ cpu="amd-ucode" # intel-ucode amd-ucode
 dgraphics="nvidia" # nvidia amd
 #integrált grafikus kártya
 igraphics="amdgpu" # i915 amdgpu
-gitpath="/mnt/github/arch/$machine/arch/setup"
+gitpath="/mnt/github/stre/arch/$machine/arch/setup"
 ltime="Europe/Budapest" # Argentina/BuenosAires
 key="hu_HU.UTF-8"
 keymap="hu" # hu en de es

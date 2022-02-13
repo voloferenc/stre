@@ -2,7 +2,7 @@
 # BEGIN Config
 machine="legion5"
 desktop="kde" # kde i3 xfce gnome
-gitpath="~/github/arch/$machine/arch/beallitas/home"
+gitpath="~/github/stre/arch/$machine/arch/beallitas/home"
 shell="zsh" # bash zsh
 # END Config
 
