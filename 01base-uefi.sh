@@ -1,9 +1,9 @@
 #!/bin/sh
 # BEGIN Config 
-hostname="Aporka"
-user="volo"
-pswroot="pheiL9ge."
-pswuser="Faz9.x8_"
+hostname="ArchStre"
+user="stre"
+pswroot="poba7880"
+pswuser=""
 machine="legion5" # g5 t470 legion5 rpi4
 country="Hungary"
 cpu="amd-ucode" # intel-ucode amd-ucode
