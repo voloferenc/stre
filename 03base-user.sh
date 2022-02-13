@@ -43,8 +43,8 @@ then
 	cp -a $gitpath/.zshrc ~/
 
 else
-	cp -a $gitpath/.config/ ~/
-	cp -a $gitpath/.local/ ~/
+	cp -a $gitpath/.config ~/
+	cp -a $gitpath/.local ~/
 	cp -a $gitpath/.bashrc ~/
 	# cp -a $gitpath/.xinitrc ~/
 	# cp -a $gitpath/.xprofile ~/
