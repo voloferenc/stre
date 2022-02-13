@@ -1,22 +1,23 @@
 #!/bin/bash
 # BEGIN Config
-user="volo"
+user="stre"
 init="systemd" # systemd dinit openrc runit s6 suite66
 desktop="kde" # kde i3 xfce gnome
 machine="legion5" # legion5 g5 rpi4 t450
-gitpath="/mnt/github/arch/$machine/arch"
+gitpath="/mnt/doksi/stre-main/$machine/arch"
 ulb_dir="/usr/local/bin/"
 uls_dir="/usr/local/sbin/"
 dm="sddm" # sddm lightdm gdm
-editor="nvim" # nvim vim nano ed none
-optimus="optimus-manager" # optimus-manager none
-graphics="nvidia" # nvidia intel amd none
+editor="nano" # nvim vim nano ed none
+optimus="none" # optimus-manager none
+graphics="intel" # nvidia intel amd none
 filesystem="btrfs" # ext4 btrfs
-units="cronie NetworkManager NetworkManager-dispatcher cpupower tlp cups-browsed haveged bluetooth fstrim.timer $dm"
-laptop="igen" # igen nem
+units="cronie NetworkManager NetworkManager-dispatcher cups-browsed haveged bluetooth fstrim.timer $dm"
+laptop="nem" # igen nem
 drive="ssd" # ssd hdd
 tmpfile="/tmp/packages"
 # END Config
+# A többit a program autómatikusan megoldja
 
 sudo timedatectl set-ntp true
 sudo hwclock --systohc
