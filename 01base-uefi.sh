@@ -4,7 +4,7 @@ hostname="ArchStre"
 user="stre"
 pswroot="poba7880"
 pswuser="puba5680"
-machine="legion5" # g5 t470 legion5 rpi4
+machine="legion5" # beállításokhoz kell
 country="Hungary"
 cpu="intel-ucode" # intel-ucode amd-ucode
 #discrete grafikus kártya
