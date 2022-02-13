@@ -7,7 +7,7 @@ GRUB_DISABLE_OS_PROBER=n
 GRUB_TIMEOUT=5
 GRUB_DISTRIBUTOR="Arch"
 GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet"
-GRUB_CMDLINE_LINUX="resume=UUID=bc202e31-4537-4376-9b6e-2a22d6feda23 resume_offset=16400 nvidia-drm.modeset=1"
+GRUB_CMDLINE_LINUX="resume=UUID=bc202e31-4537-4376-9b6e-2a22d6feda23 resume_offset=16400"
 
 # Preload both GPT and MBR modules so that they are not missed
 GRUB_PRELOAD_MODULES="part_gpt part_msdos"
