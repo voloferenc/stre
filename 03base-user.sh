@@ -3,7 +3,7 @@
 machine="legion5"
 desktop="kde" # kde i3 xfce gnome
 gitpath="~/github/stre-main/$machine/arch/beallitas/home"
-shell="zsh" # bash zsh
+shell="bash" # bash zsh
 # END Config
 
 mkdir .config 2> /dev/null
