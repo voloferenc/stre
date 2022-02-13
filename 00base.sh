@@ -13,7 +13,7 @@ formaz="none" # sda none // sda formázása
 table="gdisk" # fdisk gdisk cfdisk cgdisk
 # END Config
 #iwctl
-gdisk $disk1
+$table $disk1
 if [ $formaz = "sda" ]
 then
 	gdisk $disk2
