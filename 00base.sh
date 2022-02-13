@@ -41,7 +41,7 @@ then
 
 	if [ $disk21 = "nvme0n1p5" ]
 	then
-		mkdir /mnt/sda && mount $disk21 /mnt/sda
+		mkdir /mnt/doksi && mount $disk21 /mnt/doksi
 	fi
 
 	# swapfile
@@ -63,7 +63,7 @@ else
 	mkdir /mnt/home && mount $disk17 /mnt/home
 	if [ $disk21 = "nvme0n1p5" ]
 	then
-		mkdir /mnt/sda && mount $disk21 /mnt/sda
+		mkdir /mnt/doksi && mount $disk21 /mnt/doksi
 	fi
 
 	dd if=/dev/zero of=/mnt/swapfile bs=1G count=8 status=progress
