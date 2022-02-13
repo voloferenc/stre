@@ -43,19 +43,12 @@ then
 	cp -a $gitpath/.zshrc ~/
 
 else
-	cp -a $gitpath/.config/Bitwarden ~/.config/
-	cp -a $gitpath/.config/nvim ~/.config/
-	cp -a $gitpath/.config/ranger ~/.config/
-	cp -a $gitpath/.config/mc ~/.config/
-	cp -a $gitpath/.local/TelegramDesktop ~/.local/
-	cp -a $gitpath/.local/TelegramDesktop ~/.local/
-	cp -a $gitpath/.vim ~/
-	cp -a $gitpath/.Xresources ~/
+	cp -a $gitpath/.config/ ~/
+	cp -a $gitpath/.local/ ~/
 	cp -a $gitpath/.bashrc ~/
 	# cp -a $gitpath/.xinitrc ~/
 	# cp -a $gitpath/.xprofile ~/
-	cp -a $gitpath/.zshrc ~/
-
+	
 fi
 
 
