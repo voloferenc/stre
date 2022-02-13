@@ -3,20 +3,20 @@
 hostname="ArchStre"
 user="stre"
 pswroot="poba7880"
-pswuser=""
+pswuser="puba5680"
 machine="legion5" # g5 t470 legion5 rpi4
 country="Hungary"
-cpu="amd-ucode" # intel-ucode amd-ucode
+cpu="intel-ucode" # intel-ucode amd-ucode
 #discrete grafikus kártya
-dgraphics="nvidia" # nvidia amd
+dgraphics="none" # nvidia amd
 #integrált grafikus kártya
-igraphics="amdgpu" # i915 amdgpu
-gitpath="/mnt/github/arch/$machine/arch/setup"
+igraphics="i915" # i915 amdgpu
+gitpath="/mnt/doksi/stre-main/$machine/arch/setup"
 ltime="Europe/Budapest" # Argentina/BuenosAires
 key="hu_HU.UTF-8"
 keymap="hu" # hu en de es
-editor="neovim" # nano vim neovim ed
-packages="netctl dialog net-tools links gptfdisk networkmanager pwgen mc ntfs-3g $cpu reflector $editor"
+editor="nano" # nano vim neovim ed
+packages="netctl dialog net-tools links gptfdisk networkmanager mc ntfs-3g $cpu reflector $editor"
 #kernel_header="linux-lts-headers linux-zen-headers" # linux-lts-headers linux-zen-headers linux-headers
 filesystem="btrfs" # btrfs ext4
 # END Config
