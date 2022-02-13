@@ -2,11 +2,9 @@
 # BEGIN Config
 machine="legion5"
 desktop="kde" # kde i3 xfce gnome
-gitpath="~/github/stre/$machine/arch/beallitas/home"
+gitpath="~/github/arch/$machine/arch/beallitas/home"
 shell="zsh" # bash zsh
 # END Config
-
-/mnt/sda/home/./git.sh
 
 mkdir .config 2> /dev/null
 mkdir .local 2> /dev/null
@@ -67,6 +65,12 @@ xdg-user-dirs-update
 if [ $shell = "zsh" ]
 then
 	chsh -s /bin/zsh
+fi
+
+if [ `pacman -Qet syncthing | awk '{print $1}'` = 'syncthing' ]
+then
+	systemctl enable syncthing --user
+	systemctl start syncthing --user
 fi
 
 /bin/echo -e "\e[1;32mÚjraindítás 5..4..3..2..1..\e[0m"

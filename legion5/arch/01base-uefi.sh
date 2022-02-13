@@ -11,12 +11,13 @@ cpu="amd-ucode" # intel-ucode amd-ucode
 dgraphics="nvidia" # nvidia amd
 #integrált grafikus kártya
 igraphics="amdgpu" # i915 amdgpu
-gitpath="/mnt/github/stre/$machine/arch/setup"
+gitpath="/mnt/github/arch/$machine/arch/setup"
 ltime="Europe/Budapest" # Argentina/BuenosAires
 key="hu_HU.UTF-8"
 keymap="hu" # hu en de es
-editor="nvim" # nano vim nvim ed
+editor="neovim" # nano vim neovim ed
 packages="netctl dialog net-tools links gptfdisk networkmanager pwgen mc ntfs-3g $cpu reflector $editor"
+#kernel_header="linux-lts-headers linux-zen-headers" # linux-lts-headers linux-zen-headers linux-headers
 filesystem="btrfs" # btrfs ext4
 # END Config
 
@@ -43,25 +44,21 @@ KEYMAP=$keymap
 EOF
 fi
 echo "Hostname beállítása"
-echo $hostname >> /etc/hostname
+echo $hostname > /etc/hostname
 cat > /etc/hosts << EOF
 127.0.0.1 localhost
 ::1       localhost
 127.0.1.1 $hostname.localdomain $hostname
 EOF
-if [ $dgraphics = "nvidia" ]
-then
-	pacman -S nvidia nvdidia_modeset nvidia_uvm nvidia_drm
-fi
 
 #cat $gitpath/mkinitcpio.conf > /etc/mkinitcpio.conf
 echo "Initramfs létrehozása"
 # sed -i 's/^HOOKS.*/HOOKS="base udev autodetect modconf block encrypt lvm2 filesystems keyboard fsck"/' /etc/mkinitcpio.conf
 if [ $dgraphics = "nvidia" ]
 then
-	sed -i 's/^MODULES.*/MODULES=($igraphics) # nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
+	sed -i "s/^MODULES.*/MODULES=($igraphics) # nvidia nvidia_modeset nvidia_uvm nvidia_drm)/" /etc/mkinitcpio.conf
 else
-	sed -i 's/^MODULES.*/MODULES=($igraphics)/' /etc/mkinitcpio.conf
+	sed -i "s/^MODULES.*/MODULES=($igraphics)/" /etc/mkinitcpio.conf
 fi
 if [ $filesystem = "btrfs" ]
 then
@@ -84,7 +81,7 @@ useradd -m -g users -G wheel,video -s /bin/bash $user
 echo $user:$pswuser | chpasswd
 echo "Pacman beállítása és csomagadatbázisának frissítése"
 cat $gitpath/pacman.conf > /etc/pacman.conf
-mv /etc/pacman.d/mirrorlist >> /etc/pacman.d/mirrorlist.old
+cat /etc/pacman.d/mirrorlist >> /etc/pacman.d/mirrorlist.old
 pacman -Syu --noconfirm
 reflector -c $country -a 6 --sort rate --save /etc/pacman.d/mirrorlist
 systemctl enable NetworkManager

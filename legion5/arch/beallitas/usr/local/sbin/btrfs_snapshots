@@ -1,0 +1,63 @@
+#!/bin/sh
+
+dt=`date +"%Y.%m.%d-%T"`
+nvme0n1p5=`blkid -s UUID -o value /dev/nvme0n1p5`
+nvme0n1p6=`blkid -s UUID -o value /dev/nvme0n1p6`
+
+echo "Add meg, hogy ez hanyadik mentés legyen, egy jegyű szám legyen (pl: 0)"
+read num
+
+if [ ${num} -eq 0 ] 2>/dev/null
+then
+	echo "Légyszives add meg ismét a számot de két jegyű legyen (pl: 00)"
+	read num
+else
+	num=${dt}
+fi
+
+echo "Biztonsági mentés a kernelről"
+rsync /boot/initramfs-linux-lts.img /boot/initramfs-linux-lts-snap.img
+rsync /boot/vmlinuz-linux-lts /boot/vmlinuz-linux-lts-snap
+rsync /boot/intel-ucode.img /boot/intel-ucode-snap.img
+sleep 1
+
+echo "Btrfs snapshots a @, @home, @var subvolume-okról."
+btrfs subvolume snapshot / /.snapshots/@-${num}
+btrfs subvolume snapshot /home /.snapshots/@home-${num}
+btrfs subvolume snapshot /var/log /.snapshots/@var_log-${num}
+sleep 1
+
+cat > /.snapshots/@-${num}/etc/fstab << EOF
+# Static information about the filesystems.
+# See fstab(5) for details.
+
+# <file system> <dir> <type> <options> <dump> <pass>
+
+# /dev/nvme0n1p6 UUID=2ac81381-1225-4194-a1fe-8c48c22af682
+UUID=${nvme0n1p6}	/         	btrfs     	rw,noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvol=/@snapshots/@-${num}	0 0
+
+# /dev/nvme0n1p5
+UUID=${nvme0n1p5}	/boot     	vfat      	rw,noatime,discard,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro	0 2
+
+# /dev/nvme0n1p6
+UUID=${nvme0n1p6}	/home     	btrfs     	rw,noatime,compress=zstd:3,ssd,discard=asnyc,space_cache=v2,subvol=/@snapshots/@home-${num}	0 0
+
+# /dev/nvme0n1p6
+UUID=${nvme0n1p6}	/var/log		btrfs  	 	rw,noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvol=/@snapshots/@var_log-${num}	0 0
+
+# /dev/nvme0n1p6
+UUID=${nvme0n1p6}	/.snapshots	btrfs     	rw,noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvol=/@snapshots	0 0
+
+# /dev/nvme0n1p6
+UUID=${nvme0n1p6}	/swap		btrfs     	rw,noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvol=/@swap	0 0
+
+/swap/swapfile		none		swap		defaults	0 0
+
+EOF
+
+sleep 1
+echo "GRUB frissítése"
+grub-mkconfig -o /boot/grub/grub.cfg
+
+sleep 1
+echo "Mentés elkészült!"
