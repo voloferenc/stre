@@ -1,15 +1,16 @@
 #!/bin/sh
 #BEGIN Config
 disk1="/dev/nvme0n1" # /dev/vnme0n1
-disk15="/dev/nvme0n1p5" # /boot // disk1 => első lemez, 15 => első lemez ötödik partíció
-disk16="/dev/nvme0n1p6" # /
+disk15="/dev/nvme0n1p6" # /boot // disk1 => első lemez, 15 => első lemez ötödik partíció
+disk16="/dev/nvme0n1p7" # /
 disk2="/dev/sda" # /dev/sda
-disk21="/dev/sda1" # /dev/sda1 //disk2 => második lemez, 21 => második lemez első partíció
-deditor="vim" # a telepítési lemez alapértelmezett szerkesztője, nem ez lesz a rendszered alapértelmezettje
-editor="neovim" # vim neovim nano // ez lesz a végleges rendszer alapértelmezettje
+disk21="/dev/nvme0n1p5" # /dev/sda1 //disk2 => második lemez, 21 => második lemez első partíció
+deditor="nano" # a telepítési lemez alapértelmezett szerkesztője, nem ez lesz a rendszered alapértelmezettje
+editor="nano" # vim neovim nano // ez lesz a végleges rendszer alapértelmezettje
 kernel="linux-lts linux-zen" # linux linux-zen linux-lts // elég akár egy kernel-t is megadni, de ez soha nem lehet üres
 filesystem="btrfs" # ext4 btrfs
 formaz="none" # sda none // sda formázása
+table="gdisk" # fdisk gdisk cfdisk cgdisk
 # END Config
 #iwctl
 gdisk $disk1
@@ -38,7 +39,7 @@ then
 
 	mount $disk15 /mnt/boot
 
-	if [ $disk21 = "/dev/sda1" ]
+	if [ $disk21 = "nvme0n1p5" ]
 	then
 		mkdir /mnt/sda && mount $disk21 /mnt/sda
 	fi
@@ -60,7 +61,7 @@ else
 	mount $disk16 /mnt
 	mkdir /mnt/boot && mount $disk15 /mnt/boot
 	mkdir /mnt/home && mount $disk17 /mnt/home
-	if [ $disk21 = "/dev/sda1" ]
+	if [ $disk21 = "nvme0n1p5" ]
 	then
 		mkdir /mnt/sda && mount $disk21 /mnt/sda
 	fi
