@@ -2,7 +2,7 @@
 # BEGIN Config
 machine="legion5"
 desktop="kde" # kde i3 xfce gnome
-gitpath="/mnt/doksi/stre-main/$machine/arch/beallitas/home" # a kde beállítások .config .local .bashrc
+gitpath="/mnt/github/stre/$machine/arch/beallitas/home" # a kde beállítások .config .local .bashrc
 shell="bash" # bash zsh
 # END Config
 
