@@ -87,4 +87,5 @@ reflector -c $country -a 6 --sort rate --save /etc/pacman.d/mirrorlist
 systemctl enable NetworkManager
 echo "$user hozzáadása a sudoers fájlhoz"
 echo "$user ALL=(ALL) ALL" >> /etc/sudoers.d/$user
+clear
 printf "\e[1;32mVégeztünk! Gépeld be, hogy exit && cd / && swapoff -a && umount -R /mnt && reboot.\e[0m"
