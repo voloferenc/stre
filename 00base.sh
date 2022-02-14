@@ -16,15 +16,17 @@ kernel="linux-lts linux-zen" # linux linux-zen linux-lts // elég akár egy kern
 formaz="none" # sda none // sda formázása
 table="gdisk" # fdisk gdisk cfdisk cgdisk
 # END Config
-bootdev=${disk1}p{mkDiskNumbers[0]
+#####
+disk2="${disk1}p"
+bootdev=${disk2}${mkDiskNumbers[0]}
 if [ ${#mkDiskNumbers} -gt 2 ]
 then
-	swapdev=${disk1}p{mkDiskNumbers[1]}
-	rootdev=${disk1}p{mkDiskNumbers[2]}
-	homedev=${disk1}p{mkDiskNumbers[3]}
+	swapdev=${disk2}${mkDiskNumbers[1]}
+	rootdev=${disk2}${mkDiskNumbers[2]}
+	homedev=${disk2}${mkDiskNumbers[3]}
 else
-	rootdev=${disk1}p{mkDiskNumbers[1]}
-	homedev=${disk1}p{mkDiskNumbers[2]}
+	rootdev=${disk2}${mkDiskNumbers[1]}
+	homedev=${disk2}${mkDiskNumbers[2]}
 fi
 ####
 #iwctl
@@ -138,6 +140,7 @@ fi
 genfstab -U /mnt >> /mnt/etc/fstab
 #$deditor /mnt/etc/fstab
 mkdir /mnt/mnt/github
-cd /mnt/mnt/github && clone https://github.com/voloferenc/stre
+cd /mnt/mnt/github && git clone https://github.com/voloferenc/stre
 cd /
 arch-chroot /mnt /mnt/github/stre/./01base-uefi.sh
+printf "\e[1;32mVégeztünk! Gépeld be, hogy reboot.\e[0m"

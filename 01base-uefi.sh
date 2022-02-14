@@ -89,8 +89,8 @@ systemctl enable NetworkManager
 echo "$user hozzáadása a sudoers fájlhoz"
 echo "$user ALL=(ALL) ALL" >> /etc/sudoers.d/$user
 clear
-if [ continue1 = "yes" ]
+if [ $continue1 = "yes" ]
 then
 	/mnt/github/stre/./02base-desktop.sh
 fi
-printf "\e[1;32mVégeztünk! Gépeld be, hogy exit && cd / && swapoff -a && umount -R /mnt && reboot.\e[0m"
+#printf "\e[1;32mVégeztünk! Gépeld be, hogy exit && cd / && swapoff -a && umount -R /mnt && reboot.\e[0m"
