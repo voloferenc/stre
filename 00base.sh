@@ -139,4 +139,4 @@ genfstab -U /mnt >> /mnt/etc/fstab
 mkdir /mnt/mnt/github
 cd /mnt/mnt/github && clone https://github.com/voloferenc/stre
 cd /
-arch-chroot /mnt
+arch-chroot /mnt /mnt/github/stre/./01base-uefi.sh

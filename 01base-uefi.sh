@@ -19,6 +19,7 @@ editor="nano" # nano vim neovim ed
 packages="netctl dialog net-tools links gptfdisk networkmanager mc ntfs-3g $cpu reflector $editor"
 #kernel_header="linux-lts-headers linux-zen-headers" # linux-lts-headers linux-zen-headers linux-headers
 filesystem="btrfs" # btrfs ext4
+continue1="yes" # folytassa a telepéítést vagy csak az alap rendszert tegye fel?
 # END Config
 
 echo "Időzóna beállítása"
@@ -88,4 +89,8 @@ systemctl enable NetworkManager
 echo "$user hozzáadása a sudoers fájlhoz"
 echo "$user ALL=(ALL) ALL" >> /etc/sudoers.d/$user
 clear
+if [ continue1 = "yes" ]
+then
+	/mnt/github/stre/./02base-desktop.sh
+fi
 printf "\e[1;32mVégeztünk! Gépeld be, hogy exit && cd / && swapoff -a && umount -R /mnt && reboot.\e[0m"
