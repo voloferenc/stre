@@ -123,4 +123,5 @@ else
 fi
 
 chsh -s /bin/zsh
+clear
 printf "\e[1;32mElkészült a grafikus felület feltelepítése és konfigurálása! Kérlek most felhaszálőként lépj be és add ki a következő /mnt/sda/home/./git.sh parancsot majd lépj be a github/arch/$machine/arch könyvtárba és futtasd a 03base-user.sh-t.\e[0m"
