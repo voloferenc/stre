@@ -1,4 +1,5 @@
 loadkeys hu
+lsblk
 mkdir /sda
 mount /dev/sda1 /sda
 cd /sda
