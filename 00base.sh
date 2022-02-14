@@ -136,4 +136,7 @@ else
 fi
 genfstab -U /mnt >> /mnt/etc/fstab
 #$deditor /mnt/etc/fstab
+mkdir /mnt/mnt/github
+cd /mnt/mnt/github && clone https://github.com/voloferenc/stre
+cd /
 arch-chroot /mnt
