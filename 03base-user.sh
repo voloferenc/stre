@@ -43,8 +43,8 @@ then
 	cp -a $gitpath/.zshrc ~/
 
 else
-	cp -a $gitpath/.config ~/
-	cp -a $gitpath/.local ~/
+	#cp -a $gitpath/.config ~/
+	#cp -a $gitpath/.local ~/
 	cp -a $gitpath/.bashrc ~/
 	# cp -a $gitpath/.xinitrc ~/
 	# cp -a $gitpath/.xprofile ~/
@@ -66,6 +66,4 @@ then
 	systemctl start syncthing --user
 fi
 
-/bin/echo -e "\e[1;32mÚjraindítás 5..4..3..2..1..\e[0m"
-sleep 5
-reboot
+/bin/echo -e "\e[1;32mKész! Másold át a KDE beálltásaidat az adat partíciórol.[0m"
