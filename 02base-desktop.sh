@@ -22,6 +22,7 @@ tmpfile="/tmp/packages"
 sudo timedatectl set-ntp true
 sudo hwclock --systohc
 
+pacman -Syu --noconfirm
 pacman -S --needed $(cat $gitpath/$desktop)
 
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
