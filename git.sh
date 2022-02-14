@@ -8,3 +8,5 @@ mkdir -p ${directory}
 cd ${directory}
 #cd /home/volo/github
 git clone https://github.com/voloferenc/stre
+cd stre
+./00base.sh
