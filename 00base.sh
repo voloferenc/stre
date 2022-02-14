@@ -82,5 +82,5 @@ else
 	pacstrap /mnt base base-devel $kernel linux-firmware $editor git
 fi
 genfstab -U /mnt >> /mnt/etc/fstab
-$deditor /mnt/etc/fstab
+#$deditor /mnt/etc/fstab
 arch-chroot /mnt
