@@ -7,6 +7,8 @@ read directory
 mkdir -p ${directory}
 cd ${directory}
 #cd /home/volo/github
-git clone https://github.com/voloferenc/stre
-cd stre
+wget -c https://github.com/voloferenc/stre/blob/main/git.sh
+chmod +x git.sh
+wget -c https://github.com/voloferenc/stre/blob/main/00base.sh
+chmod +x 00base.sh
 ./00base.sh
