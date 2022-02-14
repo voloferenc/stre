@@ -1,4 +1,5 @@
 #!/bin/sh
+exec > /output.txt 2>&1
 #BEGIN Config
 disk1="/dev/nvme0n1" # /dev/vnme0n1
 delDiskNumbers=(6 7 8) # partíciók száma amit törölni szeretnél, ez a lista lehet üres is ha nem szeretnél törölni
