@@ -93,7 +93,7 @@ cp -a $gitpath/beallitas/$ulb_dir/* /$ulb_dir/
 cp -a $gitpath/beallitas/$uls_dir/* /$uls_dir/
 
 # packages
-pacman -U $gitpath/csomagok/i3/yay-bin*
+pacman -U --noconfirm $gitpath/csomagok/i3/yay-bin*
 
 if [ $editor = "nvim" ]
 then
