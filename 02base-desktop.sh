@@ -122,7 +122,7 @@ else
 	rc-update add $units default
 fi
 
-chsh -s /bin/zsh
+# chsh -s /bin/zsh
 
 su stre
 cd ~
