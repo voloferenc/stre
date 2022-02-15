@@ -2,7 +2,7 @@
 # BEGIN Config
 machine="legion5"
 desktop="kde" # kde i3 xfce gnome
-gitpath="/mnt/github/stre/$machine/arch/beallitas/home" # a kde beállítások .config .local .bashrc
+gitpath="/mnt/doksi/" # a kde beállítások .config .local .bashrc
 shell="bash" # bash zsh
 # END Config
 
@@ -43,9 +43,12 @@ then
 	cp -a $gitpath/.zshrc ~/
 
 else
-	#cp -a $gitpath/.config ~/
-	#cp -a $gitpath/.local ~/
-	cp -a $gitpath/.bashrc ~/
+	cp -a $gitpath/archBeallitas.zip ~/
+	unzip archBeallitas.zip
+	cd archBeallitas
+	cp -a .config ~/
+	cp -a .local ~/
+	cp -a .bashrc ~/
 	# cp -a $gitpath/.xinitrc ~/
 	# cp -a $gitpath/.xprofile ~/
 	
