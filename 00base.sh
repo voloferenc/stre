@@ -18,7 +18,7 @@ table="gdisk" # fdisk gdisk cfdisk cgdisk
 # END Config
 #####
 diskname="${disk1}p"
-bootdev=${disk2}${mkDiskNumbers[0]}
+bootdev=${diskname}${mkDiskNumbers[0]}
 if [ ${#mkDiskNumbers} -gt 2 ]
 then
 	swapdev=${diskname}${mkDiskNumbers[1]}
