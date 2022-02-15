@@ -97,15 +97,15 @@ pacman -U $gitpath/csomagok/i3/yay-bin*
 
 if [ $editor = "nvim" ]
 then
-	pacman -U $gitpath/csomagok/i3/vim-plug*
+	pacman -U --noconfirm $gitpath/csomagok/i3/vim-plug*
 elif [ $editor = "vim" ]
 then
-	pacman -U $gitpath/csomagok/i3/vim-plug*
+	pacman -U --noconfirm $gitpath/csomagok/i3/vim-plug*
 fi
 
 if [ $optimus = "optimus-manager" ]
 then
-	pacman -U $gitpath/csomagok/i3/optimus-manager*
+	pacman -U --noconfirm $gitpath/csomagok/i3/optimus-manager*
 	cp -a $gitpath/beallitas/etc/optimus-manager/* /etc/optimus-manager/
 else
 	rm -rf /etc/pacman.d/hooks/optimus.hook
