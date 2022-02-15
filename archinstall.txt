@@ -4,18 +4,3 @@ mkdir /sda
 mount /dev/sda1 /sda
 cd /sda
 ./git.sh
-lefut milegyen a könyvtár kérdésre 
-/github
-elindul a telepítés
-cd /mnt/github/stre
-./01base-uefi.sh
-ha végzett
-exit
-enter
-cd / && swapoff -a && umount -R /mnt && reboot
-root ként bejelentkezel
-cd /mnt/github/stre
-./02base-user.sh
-ALT+F2 átváltás konzolra
-bejelentkezés stre puba5680
-utánna átmásolni (felülírni) a .local, .config, .bashrc
