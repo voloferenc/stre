@@ -95,7 +95,7 @@ cp -a $gitpath/beallitas/$uls_dir/* /$uls_dir/
 # packages
 pacman -U $gitpath/csomagok/i3/yay-bin*
 
-if [ $editor = "nvim"]
+if [ $editor = "nvim" ]
 then
 	pacman -U $gitpath/csomagok/i3/vim-plug*
 elif [ $editor = "vim" ]
