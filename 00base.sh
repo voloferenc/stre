@@ -17,16 +17,16 @@ formaz="none" # sda none // sda formázása
 table="gdisk" # fdisk gdisk cfdisk cgdisk
 # END Config
 #####
-disk2="${disk1}p"
+diskname="${disk1}p"
 bootdev=${disk2}${mkDiskNumbers[0]}
 if [ ${#mkDiskNumbers} -gt 2 ]
 then
-	swapdev=${disk2}${mkDiskNumbers[1]}
-	rootdev=${disk2}${mkDiskNumbers[2]}
-	homedev=${disk2}${mkDiskNumbers[3]}
+	swapdev=${diskname}${mkDiskNumbers[1]}
+	rootdev=${diskname}${mkDiskNumbers[2]}
+	homedev=${diskname}${mkDiskNumbers[3]}
 else
-	rootdev=${disk2}${mkDiskNumbers[1]}
-	homedev=${disk2}${mkDiskNumbers[2]}
+	rootdev=${diskname}${mkDiskNumbers[1]}
+	homedev=${diskname}${mkDiskNumbers[2]}
 fi
 ####
 #iwctl
