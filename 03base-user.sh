@@ -25,14 +25,14 @@ then
 elif [ $desktop = "xfce" ]
 then
 	cp -a $gitpath/.config/Bitwarden ~/.config/
-	cp -a $gitpath/.config/nvim ~/.config/
-	cp -a $gitpath/.config/ranger ~/.config/
+	#cp -a $gitpath/.config/nvim ~/.config/
+	#cp -a $gitpath/.config/ranger ~/.config/
 	cp -a $gitpath/.config/mc ~/.config/
 	cp -a $gitpath/.local/TelegramDesktop ~/.local/
-	cp -a $gitpath/.vim ~/
+	#cp -a $gitpath/.vim ~/
 
-	cp -a $gitpath/.config/rofi ~/.config
-	cp -a $gitpath/.config/zathura ~/.config
+	#cp -a $gitpath/.config/rofi ~/.config
+	#cp -a $gitpath/.config/zathura ~/.config
 
 	cp -a $gitpath/.Xdefaults ~/
 	cp -a $gitpath/.Xresources ~/
@@ -40,7 +40,7 @@ then
 	cp -a $gitpath/.gtkrc-2.0 ~/
 	cp -a $gitpath/.xinitrc ~/
 	cp -a $gitpath/.xprofile ~/
-	cp -a $gitpath/.zshrc ~/
+	#cp -a $gitpath/.zshrc ~/
 
 else
 	cp -a $gitpath/archBeallitas.zip ~/

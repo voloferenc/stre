@@ -19,8 +19,10 @@ editor="nano" # nano vim neovim ed
 packages="netctl dialog net-tools links gptfdisk networkmanager mc ntfs-3g $cpu reflector $editor"
 #kernel_header="linux-lts-headers linux-zen-headers" # linux-lts-headers linux-zen-headers linux-headers
 filesystem="btrfs" # btrfs ext4
-continue1="yes" # folytassa a telepéítést vagy csak az alap rendszert tegye fel?
+continue1="no" # folytassa a telepéítést vagy csak az alap rendszert tegye fel?
+swap="file" # file none // itt csak az a kérdés, hogy van e swap file vagy nincs
 # END Config
+uuid=`cat /diskuuid`
 
 echo "Időzóna beállítása"
 ln -sf /usr/share/zoneinfo/$ltime /etc/localtime
@@ -72,6 +74,24 @@ echo "Grub telepítése"
 pacman -S --needed --noconfirm grub efibootmgr grub-btrfs
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=arch --recheck
 cat $gitpath/grub > /etc/default/grub
+
+if [ $dgraphics = "nvidia" ]
+then
+	if [ $swap = "file" ]
+	then
+		sed -i "s/^GRUB_CMDLINE_LINUX=.*/GRUB_CMDLINE_LINUX=\"resume=UUID=$uuid resume_offset=16400 nvidia-drm.modeset=1\"/" /etc/default/grub
+	else
+		sed -i "s/^GRUB_CMDLINE_LINUX=.*/GRUB_CMDLINE_LINUX=\"resume=UUID=$uuid nvidia-drm.modeset=1\"/" /etc/default/grub
+	fi
+else
+	if [ $swap = "file" ]
+	then
+		sed -i "s/^GRUB_CMDLINE_LINUX=.*/GRUB_CMDLINE_LINUX=\"resume=UUID=$uuid resume_offset=16400\"/" /etc/default/grub
+	else
+		sed -i "s/^GRUB_CMDLINE_LINUX=.*/GRUB_CMDLINE_LINUX=\"resume=UUID=$uuid\"/" /etc/default/grub
+	fi
+fi
+rm -rf /diskuuid
 grub-mkconfig -o /boot/grub/grub.cfg
 echo "Csomagok telepítése"
 pacman -S --needed --noconfirm $packages

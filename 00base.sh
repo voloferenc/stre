@@ -17,6 +17,8 @@ formaz="none" # sda none // sda formázása
 table="gdisk" # fdisk gdisk cfdisk cgdisk
 # END Config
 #####
+
+umount /sda
 diskname="${disk1}p"
 bootdev=${diskname}${mkDiskNumbers[0]}
 if [ ${#mkDiskNumbers} -gt 2 ]
@@ -81,7 +83,7 @@ then
 
 	if [ $disk21 = $disk2 ]
 	then
-		mkdir /mnt/$disk2name && mount $disk21 /mnt/$disk2name
+		mkdir /mnt/mnt/$disk2name && mount $disk21 /mnt/mnt/$disk2name
 	fi
 
 	# swapfile
@@ -111,7 +113,7 @@ else
 	mkdir /mnt/home && mount $homedev /mnt/home
 	if [ $disk21 = $disk2 ]
 	then
-		mkdir /mnt/$disk2name && mount $disk21 /mnt/$disk2name
+		mkdir /mnt/mnt/$disk2name && mount $disk21 /mnt/mnt/$disk2name
 	fi
 
 	# swapfile
@@ -129,6 +131,9 @@ else
 	fi
 fi
 	
+# pacman keyring frissites
+pacman-key --init
+pacman-key --populate archlinux
 
 #pacstrap /mnt base base-devel linux-zen linux-lts linux-firmware neovim btrfs-progs git
 if [ $filesystem = "btrfs" ]
@@ -137,10 +142,13 @@ then
 else
 	pacstrap /mnt base base-devel $kernel linux-firmware $editor git
 fi
+
 genfstab -U /mnt >> /mnt/etc/fstab
-#$deditor /mnt/etc/fstab
+blkid -s PARTUUID -o value $rootdev >> /mnt/diskuuid
+$deditor /mnt/etc/fstab
 mkdir /mnt/mnt/github
 cd /mnt/mnt/github && git clone https://github.com/voloferenc/stre
 cd /
-arch-chroot /mnt /mnt/github/stre/./01base-uefi.sh
+#arch-chroot /mnt /mnt/github/stre/./01base-uefi.sh
+arch-chroot /mnt
 printf "\e[1;32mVégeztünk! Gépeld be, hogy reboot.\e[0m"
