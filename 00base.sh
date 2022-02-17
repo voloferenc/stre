@@ -135,7 +135,7 @@ fi
 
 if [ $partSda = "none" ]
 then
-	umount /sda
+	umount /sdb
 fi
 genfstab -U /mnt >> /mnt/etc/fstab
 blkid -s PARTUUID -o value $rootdev >> /mnt/diskuuid
