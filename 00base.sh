@@ -2,7 +2,7 @@
 exec > /output.txt 2>&1
 #BEGIN Config
 disk1="/dev/nvme0n1" # /dev/vnme0n1
-delDiskNumbers=(6 7) # partíciók száma amit törölni szeretnél, ez a lista lehet üres is ha nem szeretnél törölni
+delDiskNumbers=(6 7 8) # partíciók száma amit törölni szeretnél, ez a lista lehet üres is ha nem szeretnél törölni
 mkDiskNumbers=(6 7) # a létrehozni kívánt partíciók sorszáma
 mkDiskSize=(+512M 0) # a partíciók mérete első a /boot, második a /, harmadik /home, a megabájtot így adod meg pl: +512M a gigabyteot pedig így pl: +20G a 0 a teljes maradék lemez felhasználását jelenti, a mkDiskSize elemeinak a száma meg kell, hogy egyezzen a mkDiskNumbers elemeinek a számával
 diskType=(ef00 8300 8200) # ef00->efi 8300->linux filesystem 8200->swap pl így nézzen ki: "ef00 8200 8300" a sorrend fontos ha van swap
