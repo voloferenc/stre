@@ -18,7 +18,7 @@ table="gdisk" # fdisk gdisk cfdisk cgdisk
 # END Config
 #####
 
-umount /sda
+umount /sdd
 diskname="${disk1}p"
 bootdev=${diskname}${mkDiskNumbers[0]}
 if [ ${#mkDiskNumbers} -gt 2 ]
