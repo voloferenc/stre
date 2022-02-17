@@ -18,7 +18,7 @@ keymap="hu" # hu en de es
 editor="nano" # nano vim neovim ed
 packages="netctl dialog net-tools links gptfdisk networkmanager mc ntfs-3g $cpu reflector $editor"
 #kernel_header="linux-lts-headers linux-zen-headers" # linux-lts-headers linux-zen-headers linux-headers
-filesystem="btrfs" # btrfs ext4
+filesystem="ext4" # btrfs ext4
 continue1="no" # folytassa a telepéítést vagy csak az alap rendszert tegye fel?
 swap="file" # file none // itt csak az a kérdés, hogy van e swap file vagy nincs
 # END Config
