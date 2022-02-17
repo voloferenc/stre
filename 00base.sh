@@ -1,9 +1,5 @@
 #!/bin/sh
-<<<<<<< HEAD
 #exec > /output.txt 2>&1
-=======
-#exec > /output00.txt 2>&1
->>>>>>> fe92317 (gdisk hozzaadva, automatikus particionalas eltavolitva)
 #BEGIN Config
 disk1="/dev/nvme0n1" # /dev/vnme0n1
 bootdev="/dev/nvme0n1p5" # /boot // disk1 => első lemez, 15 => első lemez ötödik partíció
@@ -23,7 +19,6 @@ partSda="none" # igen none // sda particionalsa
 typeSda="ext4" # ext4 btrfs // sda partíció formázása
 gitDirectory="/mnt/mnt/github" # github könyvtára
 # END Config
-<<<<<<< HEAD
 #####
 
 diskname="${disk1}p"
@@ -38,8 +33,6 @@ else
 	homedev=${diskname}${mkDiskNumbers[2]}
 fi
 ####
-=======
->>>>>>> fe92317 (gdisk hozzaadva, automatikus particionalas eltavolitva)
 #iwctl
 gdisk $disk1
 if [ $partSda = "igen" ]
