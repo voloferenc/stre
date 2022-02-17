@@ -2,9 +2,9 @@
 #exec > /output.txt 2>&1
 #BEGIN Config
 disk1="/dev/nvme0n1" # /dev/vnme0n1
-bootdev="/dev/nvme0n1p5" # /boot // disk1 => első lemez, 15 => első lemez ötödik partíció
+bootdev="/dev/nvme0n1p6" # /boot // disk1 => első lemez, 15 => első lemez ötödik partíció
 swapdev="/dev/sdd3" # swap
-rootdev="/dev/nvme0n1p6" # /
+rootdev="/dev/nvme0n1p7" # /
 homedev="/dev/nvme0n1p7" # /home
 homedevsda="/dev/nvme0n1p5" # /dev/sda1 ennek meg kell egyeznie a homedevsda1-el mert ha nem akkor nem csatolja a külső meghajtót
 homedevsda1="/dev/nvme0n1p5" # /dev/sda1 //homedevsda => második lemez, 21 => második lemez első partíció
