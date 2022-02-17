@@ -18,20 +18,6 @@ swapsize="2" # a swap file mérete GB-ban
 partSda="none" # igen none // sda particionalsa
 typeSda="ext4" # ext4 btrfs // sda partíció formázása
 gitDirectory="/mnt/mnt/github" # github könyvtára
-# END Config
-#####
-
-diskname="${disk1}p"
-bootdev=${diskname}${mkDiskNumbers[0]}
-if [ ${#mkDiskNumbers} -gt 2 ]
-then
-	swapdev=${diskname}${mkDiskNumbers[1]}
-	rootdev=${diskname}${mkDiskNumbers[2]}
-	homedev=${diskname}${mkDiskNumbers[3]}
-else
-	rootdev=${diskname}${mkDiskNumbers[1]}
-	homedev=${diskname}${mkDiskNumbers[2]}
-fi
 ####
 #iwctl
 gdisk $disk1
