@@ -118,47 +118,7 @@ Btrfs swapfile
     mkswap /mnt/swap/swapfile
     swapon /mnt/swap/swapfile
     
-Így kell majd kinéznie az fstab-ban
 
-    UUID=ba27f630-8bcf-45d8-a303-b2dd672d9a56	/swap     	btrfs     	subvol=@swap	0 0
-    /swap/swapfile      	none      	swap      	defaults  	0 0
-    
-# a resume_offset-et btrfs esetén így lehet kinyerni
-    Btrfs_map_pysical.c letöltése innen: https://github.com/osandov/osandov-linux/blob/master/scripts/btrfs_map_physical.c
-
-A progromot le kell fordítani
-     
-    gcc -O2 -o btrfs_map_physical btrfs_map_physical.c
-    
-Lefuttatjuk a swapfile-n
-    
-    ./btrfs_map_physical /swap/swapfile
-    
-A PHYSICAL OFFSET eredménye kell nekünk
-
-    FILE OFFSET  EXTENT TYPE  LOGICAL SIZE  LOGICAL OFFSET  PHYSICAL SIZE  DEVID  PHYSICAL OFFSET
-    0            regular      4096          2927632384      268435456      1      4009762816 < ------ EZ kell
-    4096         prealloc     268431360     2927636480      268431360      1      4009766912
-    268435456    prealloc     268435456     3251634176      268435456      1      4333764608
-    536870912    prealloc     268435456     3520069632      268435456      1      4602200064
-    805306368    prealloc     268435456     3788505088      268435456      1      4870635520
-    1073741824   prealloc     268435456     4056940544      268435456      1      5139070976
-    1342177280   prealloc     268435456     4325376000      268435456      1      5407506432
-    1610612736   prealloc     268435456     4593811456      268435456      1      5675941888
-    
-Ezután lefuttatjuk ezt
-
-    getconf PAGESIZE
-       
-Majd a két számot elosztjuk
-
-    4009762816 / 4096 = 978946
-    
-És végül a kapott eredményt beírjuk
-
-    resume_offset=978946
-    
-    
 # Kapcsolódás az internethez
     iwctl
     
